@@ -226,8 +226,8 @@ body {
  .navigate-button {
       display: inline-block;
       padding: 10px 20px;
-      margin: 0px 10px;
       margin-top:8px;
+      margin-left:3.5px;
       font-size: 16px;
       font-weight: 600;
       color: #fff;
@@ -236,6 +236,8 @@ body {
       border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.3s ease;
+	  align-items: center;
+	  width:16%;
     }
     .navigate-button:hover {
       background-color: #2b4a8f;
@@ -245,14 +247,14 @@ body {
     select {
       padding: 8px 12px;
       font-size: 1em;
-      border: 2px solid #00796b;
+      border: 4px solid #00796b;
       border-radius: 6px;
       background: #ffffff;
       color: #333;
       transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       margin-top:8px;
-      width:80%;
+      width:100%;
       text-align:center;
 	  font-weight: bold;
 	  
@@ -278,9 +280,14 @@ body {
 <body> 
 
     <button class="navigate-button" onclick="navigateToPage()">Go to Pointage</button>
+	<button class="navigate-button" onclick="navigateToPage1()">Les rendement </button>
+	<button class="navigate-button" onclick="navigateToPage5()">Raporte de machinerie</button>
+	<button class="navigate-button" onclick="navigateToPage2()">Modiefie la tache</button>
+	<button class="navigate-button" onclick="navigateToPage3()">La productivite</button>
+	<button class="navigate-button" onclick="navigateToPage4()">Machinrie</button>
       <select id="daySelect" onchange="redirectToSite()">
 	  <option value="monday" data-url="">CHOISIR LE JOUR</option>
-      <option value="monday" data-url="https://aromaherbex.github.io/LUNDI/">LUNDI</option>
+      <option value="monday" data-url="https://aromaherbex.github.io/MARDI/">LUNDI</option>
       <option value="tuesday" data-url="https://aromaherbex.github.io/MARDI/">MARDI</option>
       <option value="wednesday" data-url="https://aromaherbex.github.io/MERCREDI/">MERCREDI</option>
       <option value="thursday" data-url="https://aromaherbex.github.io/JEUDI/">اJEUDI</option>
@@ -340,7 +347,22 @@ body {
 }
 
   function navigateToPage() {
-      window.location.href = 'https://abdermb98.github.io/pointage/'; // استبدل هذا بالرابط الخاص بك
+      window.location.href = 'https://abdermb98.github.io/pointage/'; 
+    }
+	function navigateToPage1() {
+      window.location.href = 'https://193.56.164.133:8443/reportes/Reporte/?key=Partes_Rendimientos'; 
+    }
+	function navigateToPage2() {
+      window.location.href = 'https://193.56.164.133:8443/ControlRoute/task/'; 
+    }
+   function navigateToPage3() {
+      window.location.href = 'https://193.56.164.133:8443/Tareo/productivity_log/'; 
+    }
+	  function navigateToPage4() {
+      window.location.href = 'https://193.56.164.133:8443/Tareo/machinerymarking/'; 
+    }
+	  function navigateToPage5() {
+      window.location.href = 'https://193.56.164.133:8443/reportes/Reporte/?key=Marcheting'; 
     }
     const url = 'https://script.google.com/macros/s/AKfycbxwvXtuX5RQn4YZD5CljPR1L8esE0PknfH9zWp9Mn-7Dp5K8B9X0fcFtXjR8W82G_K4eA/exec';
 
