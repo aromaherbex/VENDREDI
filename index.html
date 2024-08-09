@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>RHHH F20</title>
-  <style>
+<style>
  /* إعدادات أساسية */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,34 +14,7 @@ body {
     overflow-y: auto;
     position: relative;
 }
- /* WhatsApp Button */
-    .whatsapp-btn {
-        position: fixed;
-        bottom: 2px;
-        right: 2px;
-        background-color: #25D366;
-        border: none;
-        border-radius: 50%;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        padding: 1px;
-        cursor: pointer;
-        z-index: 1000;
-        transition: background-color 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-	margin-bottom: 20px;
-	margin-right: 20px;
-    }
 
-    .whatsapp-btn img {
-        width: 10px;
-        height: 10px;
-    }
-
-    .whatsapp-btn:hover {
-        background-color: #128C7E;
-    }
 /* تأثير الإضاءة الخلفية */
 body::before {
     content: '';
@@ -254,7 +227,7 @@ body {
       display: inline-block;
       padding: 10px 20px;
       margin-top:8px;
-      margin-left:3.5px;
+      margin-left:1px;
       font-size: 16px;
       font-weight: 600;
       color: #fff;
@@ -263,31 +236,15 @@ body {
       border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.3s ease;
-	  align-items: center;
-	  width:16%;
+      align-items: center;
+      width:16%;
     }
     .navigate-button:hover {
       background-color: #2b4a8f;
     }
 	
 
-    select {
-      padding: 8px 12px;
-      font-size: 1em;
-      border: 4px solid #00796b;
-      border-radius: 6px;
-      background: #ffffff;
-      color: #333;
-      transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin-top:8px;
-      width:100%;
-      text-align:center;
-	  font-weight: bold;
-	  
-      
-	  
-    }
+    
 	option{
 	font-weight: bold;
 	}
@@ -302,11 +259,143 @@ body {
     option {
       padding: 8px 12px;
     }
+	  /* WhatsApp Button */
+    .whatsapp-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #25D366;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        cursor: pointer;
+        z-index: 1000;
+        transition: background-color 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .whatsapp-btn img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .whatsapp-btn:hover {
+        background-color: #128C7E;
+    }
+
+    /* Modal */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1001;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 60px;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 90%;
+        max-width: 600px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-content h2 {
+        margin-top: 0;
+        color: #004d40;
+    }
+
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #004d40;
+    }
+    
+    select, input[type="date"], textarea, button {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 5px;
+        border: 1px solid #004d40;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    textarea {
+        resize: vertical;
+    }
+
+    .checkbox-group {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .checkbox-group label {
+        font-weight: normal;
+    }
+
+    button {
+        background-color: #004d40;
+        color: #ffffff;
+        padding: 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #00332d;
+    }
+#daySelect{
+      padding: 8px 12px;
+      font-size: 1em;
+      border: 2px solid #00796b;
+      border-radius: 6px;
+      background: #ffffff;
+      color: #333;
+      transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-top:1px;
+      width:100%;
+      text-align:center;
+      font-weight: bold;
+      margin-bottom: 1px;
+      
+	  
+    }
+
 </style>
 </head>
 <body> 
-<a href="https://aromaherbex.github.io/whats/" target="_blank" class="whatsapp-btn">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2048px-WhatsApp.svg.png" alt="WhatsApp" style="width: 50px; height: 50px;"></a>
+
     <button class="navigate-button" onclick="navigateToPage()">Go to Pointage</button>
 	<button class="navigate-button" onclick="navigateToPage1()">Les Rendement </button>
 	<button class="navigate-button" onclick="navigateToPage5()">Rndt Tract</button>
@@ -362,8 +451,94 @@ body {
       </table>
     </div>
   </div>
+<!-- WhatsApp Button -->
+<div class="whatsapp-btn" onclick="openModal()">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2048px-WhatsApp.svg.png" alt="WhatsApp">
+</div>
 
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Envoyer des informations</h2>
+      <form id="modalForm">
+          <label for="fincaModal">FINCA :</label>
+          <select id="fincaModal" name="finca" required>
+              <option value="">Sélectionner une option</option>
+              <option value="F01">F01</option>
+              <option value="F02">F02</option>
+              <option value="F03">F03</option>
+              <option value="F04">F04</option>
+              <option value="F05">F05</option>
+              <option value="F06">F06</option>
+              <option value="F08">F08</option>
+              <option value="F09">F09</option>
+              <option value="F13">F13</option>
+              <option value="F19">F19</option>
+              <option value="F20">F20</option>
+              <option value="F21">F21</option>
+              <option value="F22">F22</option>
+          </select>
+
+          <label for="dateModal">DATE :</label>
+          <input type="date" id="dateModal" name="date" required>
+
+          <label for="destinataireModal">Destinataire :</label>
+          <div class="checkbox-group">
+              <label><input type="checkbox" id="person1Modal" name="destinataire" value="person1"> Pointage</label>
+              <label><input type="checkbox" id="person2Modal" name="destinataire" value="person2"> Rendement</label>
+          </div>
+
+          <label for="messageModal">Message :</label>
+          <textarea id="messageModal" name="message" rows="4" required></textarea>
+
+          <button type="button11" onclick="sendToWhatsApp()">Envoyer sur WhatsApp</button>
+      </form>
+  </div>
+</div>
   <script>
+	  // Open the modal
+    function openModal() {
+        document.getElementById("myModal").style.display = "block";
+    }
+
+    // Close the modal
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+
+    // Send message via WhatsApp
+    function sendToWhatsApp() {
+        var finca = document.getElementById("fincaModal").value;
+        var date = document.getElementById("dateModal").value;
+        var message = document.getElementById("messageModal").value;
+
+        var phoneNumbers = [];
+        if (document.getElementById("person1Modal").checked) {
+            phoneNumbers.push("+212662781207"); // Numéro de téléphone pour la personne 1
+        }
+        if (document.getElementById("person2Modal").checked) {
+            phoneNumbers.push("+212663715065"); // Numéro de téléphone pour la personne 2
+        }
+
+        var fullMessage = `Concernant la Ferme: ${finca} le: ${date} , le probleme a ete resolu (${message})`;
+
+        if (phoneNumbers.length > 0) {
+            for (var i = 0; i < phoneNumbers.length; i++) {
+                (function(i) {
+                    setTimeout(function() {
+                        var whatsappURL = `https://wa.me/${phoneNumbers[i]}?text=${encodeURIComponent(fullMessage)}`;
+                        window.open(whatsappURL, '_blank');
+                    }, i * 1000); // Délai de 1 seconde entre chaque envoi
+                })(i);
+            }
+            // Clear the form after sending
+            document.getElementById("modalForm").reset();
+            closeModal(); // Close the modal after sending
+        } else {
+            alert("Veuillez sélectionner au moins une personne.");
+        }
+    }
   function redirectToSite() {
   const selectElement = document.getElementById('daySelect');
   const selectedOption = selectElement.options[selectElement.selectedIndex];
