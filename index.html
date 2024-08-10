@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>RHHH F20</title>
-<style>
+  <style>
  /* إعدادات أساسية */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -337,7 +337,7 @@ body {
         color: #004d40;
     }
     
-    select, input[type="date"], textarea, button {
+    select,input, input[type="date"], textarea, button {
         width: 100%;
         padding: 12px;
         margin-bottom: 5px;
@@ -391,26 +391,52 @@ body {
       
 	  
     }
+    .modal4 {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1001;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding-top: 60px;
+    }
+    .modal-content4 {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 90%;
+        max-width: 600px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
+    .modal-content4 h2 {
+        margin-top: 0;
+        color: #004d40;
+    }
 </style>
 </head>
 <body> 
 
-    <button class="navigate-button" onclick="navigateToPage()">Go to Pointage</button>
+    <button class="navigate-button" onclick="openModal4()">Pointage Manuel</button>
 	<button class="navigate-button" onclick="navigateToPage1()">Les Rendement </button>
 	<button class="navigate-button" onclick="navigateToPage5()">Rndt Tract</button>
 	<button class="navigate-button" onclick="navigateToPage2()">Les Taches</button>
 	<button class="navigate-button" onclick="navigateToPage3()">La productivite</button>
 	<button class="navigate-button" onclick="navigateToPage4()">Modifier TRC</button>
       <select id="daySelect" onchange="redirectToSite()">
-	<option value="frid" data-url="">VENDREDI</option>
+	  <option value="monday1" data-url="">CHOISIR LE JOUR</option>
       <option value="monday" data-url="https://aromaherbex.github.io/LUNDI/">LUNDI</option>
       <option value="tuesday" data-url="https://aromaherbex.github.io/MARDI/">MARDI</option>
       <option value="wednesday" data-url="https://aromaherbex.github.io/MERCREDI/">MERCREDI</option>
       <option value="thursday" data-url="https://aromaherbex.github.io/JEUDI/">JEUDI</option>
       <option value="friday" data-url="https://aromaherbex.github.io/VENDREDI/">VENDREDI</option>
       <option value="saturday" data-url="https://aromaherbex.github.io/SAMEDI/">SAMEDI</option>
-      <option value="sunday" data-url="https://aromaherbex.github.io/DIMANCHE/">DIMANCHE</option>
+      <option value="sunday" data-url="https://aromaherbex.github.io/DIMANCHE/">DIMACHE</option>
       </select>
     
 	
@@ -496,7 +522,85 @@ body {
       </form>
   </div>
 </div>
+<div id="myModal4" class="modal4">
+  <div class="modal-content4">
+      <span class="close" onclick="closeModal4()">&times;</span>
+      <h2>LOGIN</h2>
+      <form id="modalForm">
+        <label for="USER">FINCA :</label>
+        <input type="text" id="USER" name="USER" required>
+
+        <label for="PASS">MOTE DE PASSE : </label>
+        <input type="password" id="PASS" name="PASS" required>
+
+        <button type="button" onclick="LOGIN()">تسجيل الدخول</button>
+    </form>
+  </div>
+</div>
   <script>
+    // Open the modal
+    function openModal4() {
+        document.getElementById("myModal4").style.display = "block";
+    }
+
+    // Close the modal
+    function closeModal4() {
+        document.getElementById("myModal4").style.display = "none";
+    }
+    
+    // Send message via WhatsApp
+    function LOGIN() {
+      var username = document.getElementById("USER").value;
+            var password = document.getElementById("PASS").value;
+
+            // التحقق من صحة اسم المستخدم وكلمة المرور
+            if (username === "FINCA01" && password === "G7^rT") {
+                // F01
+                window.location.href = "https://aromaherbex.github.io/F1/";
+            } else if (username === "FINCA02" && password === "a2$W9") {
+                // F02
+                window.location.href = "https://aromaherbex.github.io/F2/";
+            } else if (username === "FINCA03" && password === "L4@pQ") {
+                // F03
+                window.location.href = "https://aromaherbex.github.io/F3/";
+            } else if (username === "FINCA04" && password === "R8*Xk") {
+                // F04
+                window.location.href = "https://aromaherbex.github.io/F4/";
+            } else if (username === "FINCA05" && password === "v3#Jm") {
+                // F05
+                window.location.href = "https://aromaherbex.github.io/F5/";
+            } else if (username === "FINCA06" && password === "sdgth") {
+                // F06
+                window.location.href = "https://aromaherbex.github.io/F6/";
+            } else if (username === "FINCA08" && password === "fvbgh") {
+                // F08
+                window.location.href = "https://aromaherbex.github.io/F8/";
+            } else if (username === "FINCA09" && password === "hgtyh") {
+                // F09
+                window.location.href = "https://aromaherbex.github.io/F9/";
+            } else if (username === "FINCA13" && password === "fdrfg") {
+                // F13
+                window.location.href = "https://aromaherbex.github.io/F13/";
+            } else if (username === "FINCA19" && password === "yuikj") {
+                // F19
+                window.location.href = "https://aromaherbex.github.io/F19/";
+            } else if (username === "FINCA20" && password === "ygtrg") {
+                // F20
+                window.location.href = "https://aromaherbex.github.io/F20/";
+            } else if (username === "FINCA21" && password === "frdfg") {
+                // F21
+                window.location.href = "https://aromaherbex.github.io/F21/";
+            } else if (username === "FINCA22" && password === "tyhjui") {
+                // F22
+                window.location.href = "https://aromaherbex.github.io/F22/";
+            } else if (username === "IBRAHIM" && password === "2024") {
+                // F22
+                window.location.href = "https://aromaherbex.github.io/IBRAHIM/";
+            } else {
+                // عرض رسالة خطأ
+                alert("Nom d'utilisateur ou mot de passe incorrect");
+            }
+    }
 	  // Open the modal
     function openModal() {
         document.getElementById("myModal").style.display = "block";
@@ -548,7 +652,7 @@ body {
     window.location.href = url;
   }
 }
-
+  
   function navigateToPage() {
       window.location.href = 'https://abdermb98.github.io/pointage/'; 
     }
