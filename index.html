@@ -1,266 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>RHHH F20</title>
-  <style>
- /* إعدادات أساسية */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <title>POINTAGE</title>
+    <style>
+       body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: #e0f2f1;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #e0eafc, #cfdef3); /* تدرج هادئ بين الأزرق الفاتح والرمادي */
-    color: #333;
-    overflow-x: hidden;
-    overflow-y: auto;
-    position: relative;
 }
 
-/* تأثير الإضاءة الخلفية */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
-    pointer-events: none;
-    z-index: -1;
-    animation: backgroundGlow 15s infinite linear;
-}
 
-@keyframes backgroundGlow {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 100%; }
-}
-
-/* تأثير الإضاءة المتوهجة للعنصر */
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 10px auto;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(15px);
-    position: relative;
-    overflow: hidden;
-    animation: containerFadeIn 1.5s ease-out;
-}
-
-@keyframes containerFadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* تأثير النبض للعنصر */
-.data-summary {
-    background: rgba(255, 255, 255, 0.9);
-    border: 2px solid #00796b; /* لون أخضر دافئ */
-    border-radius: 15px;
-    padding: 10px;
-    margin-bottom: 4px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+header {
+    background-color: #004d40;
+    color: white;
+    padding: 20px;
     text-align: center;
-    font-size: 1.1em;
-    color: #333;
-    animation: summaryPulse 5s ease-in-out infinite;
+    font-size: 28px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes summaryPulse {
-    0% { transform: scale(1); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
-    50% { transform: scale(1.05); box-shadow: 0 20px 40px rgba(0, 255, 255, 0.3); }
-    100% { transform: scale(1); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+.container {
+    max-width: 1600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 5px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    animation: tableFadeIn 1.5s ease-out;
-}
-
-@keyframes tableFadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
+    margin-bottom: 20px;
+    border-radius: 20px;
 }
 
 th, td {
-    padding: 8px;
-    padding-left:20px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    border: 1px solid #b2dfdb;
+    padding: 12px;
+    text-align: center;
 }
 
 th {
-    background: #004d40; 
-    color: #ffffff;
-    font-size: 1.1em;
+    background-color: #047c68;
+    color: white;
 }
 
-th:hover {
-    background: #00796b; 
+
+
+.highlight {
+    background-color: #862f3c; /* Light red background */
+    color: #f3f3f3; /* Dark red text color */
+}
+
+.edit-btn {
+    background-color: #00796b;
+    color: white;
+    border: none;
+    padding: 2px 4px;
     cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-left: 10px;
 }
 
-td {
-    background: #ffffff;
-    color: #333;
+.edit-btn:hover {
+    background-color: #004d40;
+    transform: scale(1.05);
 }
 
-td:hover {
-    background: #e0f2f1; 
-    transform: scale(1.02);
-    box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3);
+.filter-input, .filter-select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #80cbc4;
+    border-radius: 6px;
+    margin-bottom: 0px;
+    background-color: #f9fbe7;
+    position: sticky;
 }
 
-
-.filter-row {
-    background: #e0f2f1; 
-    border-bottom: 2px solid #004d40;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 4px; /* تقليل نصف قطر الحواف */
-    padding: 3px; /* تقليل الحشو */
-    position: relative;
-    animation: filterGlow 3s infinite alternate;
-    transition: all 0.3s ease;
-    max-height: 50px; /* تحديد أقصى ارتفاع أقل */
-    overflow-y: auto; /* إضافة تمرير عمودي إذا كان المحتوى أكبر من الحد الأقصى */
+.filter-select {
+    background-color: #ffffff;
 }
 
-@keyframes filterGlow {
-    0% { box-shadow: 0 2px 4px rgba(0, 255, 255, 0.2); }
-    100% { box-shadow: 0 4px 8px rgba(0, 255, 255, 0.4); }
+.totals {
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #004d40, #00796b);
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    text-align: center;
 }
 
-.filter-row input, .filter-row select {
-    border: 2px solid #00796b; 
-    border-radius: 6px; /* تقليل نصف قطر الحواف */
-    padding: 8px; /* تقليل الحشو */
-    margin: 4px 0; /* تقليل المسافة بين العناصر */
-    width: calc(100% - 20px); /* ضبط العرض */
-    box-sizing: border-box;
-    background: #ffffff;
-    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-    font-family: 'Arial', sans-serif;
-    font-size: 12px; /* تقليل حجم الخط */
+.total-item {
+    margin-right: 20px;
+    display: inline-block;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.filter-row input::placeholder {
-    color: #888;
-    opacity: 0.8;
+.total-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.filter-row input:focus, .filter-row select:focus {
-    border-color: #004d40; 
-    background: #e0f2f1;
-    box-shadow: 0 0 8px rgba(0, 77, 64, 0.5);
-    outline: none;
-}
-
-.filter-row input:hover, .filter-row select:hover {
-    border-color: #004d40;
-    background: #f0f9f8;
-    box-shadow: 0 0 6px rgba(0, 77, 64, 0.2);
+.total-item:last-child {
+    margin-right: 0;
 }
 
 
-/* تمييز الخلايا غير الصفرية في العمود السادس */
-td.highlight {
-    background-color: #ff6f61; /* لون برتقالي دافئ */
-    color: #fff;
-    position: relative;
-    animation: highlightPulse 2s infinite, highlightGlow 3s infinite;
-}
 
-@keyframes highlightPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-@keyframes highlightGlow {
-    0% { box-shadow: 0 0 8px rgba(255, 105, 97, 0.6); }
-    100% { box-shadow: 0 0 16px rgba(255, 105, 97, 0.8); }
-}
-
-td.highlight .warning-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    color: #fff;
-    font-size: 1.2em;
-}
-
-@media (max-width: 768px) {
-    .container {
-        width: 95%;
-    }
-}
-
-@media (max-width: 480px) {
-    .data-summary {
-        font-size: 1em;
-        padding: 15px;
-    }
-    .filter-row input, .filter-row select {
-        width: 100%;
-        padding: 10px;
-    }
-}
-/* إعدادات أساسية للصفحة */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f0f4f8;
-    color: #333;
-}
-
- .navigate-button {
-      display: inline-block;
-      padding: 10px 20px;
-      margin-top:8px;
-      margin-left:1px;
-      font-size: 16px;
-      font-weight: 600;
-      color: #fff;
-      background-color: #1e3a8a;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      align-items: center;
-      width:16%;
-    }
-    .navigate-button:hover {
-      background-color: #2b4a8f;
-    }
-	
-
-    
-	option{
-	font-weight: bold;
-	}
-
-    select:focus {
-      border-color: #004d40;
-      background: #e0f2f1;
-      box-shadow: 0 0 8px rgba(0, 77, 64, 0.5);
-      outline: none;
-    }
-
-    option {
-      padding: 8px 12px;
-    }
-	  /* WhatsApp Button */
-    .whatsapp-btn {
+/* Change color of nested dropdown links on hover */
+.nested-dropdown-content a:hover {background-color: #ddd;}
+/* WhatsApp Button */
+.whatsapp-btn {
         position: fixed;
         bottom: 20px;
         right: 20px;
@@ -337,13 +199,29 @@ body {
         color: #004d40;
     }
     
-    select,input, input[type="date"], textarea, button {
+    select, input[type="date"], textarea,input {
         width: 100%;
         padding: 12px;
         margin-bottom: 5px;
         border: 1px solid #004d40;
-        border-radius: 4px;
+        border-radius: 40px;
         box-sizing: border-box;
+        font-size: medium;
+        font-weight:bold ;
+        background-color: #f3f0f0;
+        text-align: center;
+    }
+
+    .BT11 {
+        background-color: #004d40;
+        color: #ffffff;
+        padding: 12px;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        width: 100%;
     }
 
     textarea {
@@ -353,131 +231,275 @@ body {
     .checkbox-group {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        border-radius: 60px;
     }
 
     .checkbox-group label {
-        font-weight: normal;
+        font-weight:bold ;
     }
+ 
 
-    button {
-        background-color: #004d40;
-        color: #ffffff;
-        padding: 12px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-        background-color: #00332d;
-    }
-#daySelect{
-      padding: 8px 12px;
-      font-size: 1em;
-      border: 2px solid #00796b;
-      border-radius: 6px;
-      background: #ffffff;
-      color: #333;
-      transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      margin-top:1px;
-      width:100%;
-      text-align:center;
-      font-weight: bold;
-      margin-bottom: 1px;
-      
-	  
-    }
-    .modal4 {
-        display: none; /* Hidden by default */
+    #downloadBtn {
         position: fixed;
-        z-index: 1001;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.4);
-        padding-top: 60px;
-    }
-    .modal-content4 {
-        background-color: #fefefe;
-        margin: 5% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 90%;
-        max-width: 600px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        bottom: 20px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #04090f; /* يمكنك تغيير اللون هنا */
+        color: rgb(156, 4, 4);
+        border: none;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
     }
 
-    .modal-content4 h2 {
-        margin-top: 0;
-        color: #004d40;
+    #downloadBtn:hover {
+        background-color: #0056b3; /* لون الخلفية عند التمرير */
     }
-</style>
-</head>
-<body> 
 
-    <button class="navigate-button" onclick="openModal4()">Pointage Manuel</button>
-	<button class="navigate-button" onclick="navigateToPage1()">Les Rendement </button>
-	<button class="navigate-button" onclick="navigateToPage5()">Rndt Tract</button>
-	<button class="navigate-button" onclick="navigateToPage2()">Les Taches</button>
-	<button class="navigate-button" onclick="navigateToPage3()">La productivite</button>
-	<button class="navigate-button" onclick="navigateToPage4()">Modifier TRC</button>
-      <select id="daySelect" onchange="redirectToSite()">
-	  <option value="monday1" data-url="">CHOISIR LE JOUR</option>
-      <option value="monday" data-url="https://aromaherbex.github.io/LUNDI/">LUNDI</option>
-      <option value="tuesday" data-url="https://aromaherbex.github.io/MARDI/">MARDI</option>
-      <option value="wednesday" data-url="https://aromaherbex.github.io/MERCREDI/">MERCREDI</option>
-      <option value="thursday" data-url="https://aromaherbex.github.io/JEUDI/">JEUDI</option>
-      <option value="friday" data-url="https://aromaherbex.github.io/VENDREDI/">VENDREDI</option>
-      <option value="saturday" data-url="https://aromaherbex.github.io/SAMEDI/">SAMEDI</option>
-      <option value="sunday" data-url="https://aromaherbex.github.io/DIMANCHE/">DIMACHE</option>
-      </select>
     
-	
-  <div class="container">
-  
-    <div class="data-summary" id="dataSummary">
-      Calculation des totaux des heures...
-    </div>
-    <div class="content">
-      <table id="workHoursTable">
-        <thead>
-          <tr id="headerRow">
-            <!-- رأس الجدول سيتم إدراجه هنا -->
-          </tr>
-          <tr class="filter-row">
-            <!-- صف الفلاتر -->
-            <th><input type="text" id="numberFilter" onkeyup="filterTable()" placeholder="MATRICULE..."></th>
-            <th><input type="text" id="nameFilter" onkeyup="filterTable()" placeholder="NOMBRE..."></th>
-            <th><input type="text" id="farmFilter" onkeyup="filterTable()" placeholder="EQUIPE..."></th>
-            <th><input type="text" id="realHoursFilter" onkeyup="filterTable()" placeholder="AGRO TAREO..."></th>
-            <th><input type="text" id="recordedHoursFilter" onkeyup="filterTable()" placeholder="RHHH..."></th>
+    nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #00796b;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Center the menu */
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: 900;
+        }
+
+        nav ul li a:hover {
+            background: #004d40;
+        }
+
+        nav ul ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #004d40;
+            min-width: 200px;
+            z-index: 1000;
+        }
+
+        nav ul ul li {
+            float: none;
+            border-top: 1px solid #555;
+        }
+
+        nav ul ul li a {
+            padding: 10px;
+            color: white;
+        }
+
+        nav ul ul ul {
+            left: 100%;
+            top: 0;
+        }
+
+        nav ul li:hover > ul {
+            display: block;
+        }
+
+        
+        /* Modal333 styling */
+        .Modal333 {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .Modal333-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .Modal333 input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            
+        }
+
+        .Modal333 button {
+            padding: 10px 20px;
+            background-color: #004d40;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        td:nth-child(7), th:nth-child(7) {
+            width: 0px; /* يمكنك تعديل القيمة بحسب العرض المطلوب */
+        }
+
+        td.highlight {
+    background-color: #ff6f61; /* لون برتقالي دافئ */
+    color: #fff;
+    position: relative;
+    animation: highlightPulse 2s infinite, highlightGlow 3s infinite;
+}
+
+@keyframes highlightPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes highlightGlow {
+    0% { box-shadow: 0 0 8px rgba(255, 105, 97, 0.6); }
+    100% { box-shadow: 0 0 16px rgba(255, 105, 97, 0.8); }
+}
+
+td.highlight .warning-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 1.2em;
+}
+
+        
+    </style>
+</head>
+<body>
+  <button id="downloadBtn">
+    &#128190; <!-- رمز القرص الصلب، يمكنك تغييره حسب رغبتك -->
+</button>
+<nav>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Descuadrage</a>
+            <ul>
+                <li><a href="https://aromaherbex.github.io/LUNDI/">LUNDI</a></li>
+                <li><a href="https://aromaherbex.github.io/MARDI/">MARDI</a></li>
+                <li><a href="https://aromaherbex.github.io/MERCREDI/">MERCEREDI</a></li>
+                <li><a href="https://aromaherbex.github.io/JEUDI/">JEUDI</a></li>
+                <li><a href="https://aromaherbex.github.io/VENDREDI/">VENDREDI</a></li>
+                <li><a href="https://aromaherbex.github.io/SAMEDI/">SAMEDI</a></li>
+                <li><a href="https://aromaherbex.github.io/DIMANCHE/">DRMANCHE</a></li>
+                
+            </ul>
+        </li>
+        <li><a href="#">Pointage manuel</a>
+            <ul>
+                <li><a href="#" onclick="openModal333('FINCA 01', 'https://aromaherbex.github.io/F1/', 'd1')">FINCA 01</a></li>
+                <li><a href="#" onclick="openModal333('FINCA 02', 'https://aromaherbex.github.io/F2/', 'd2')">FINCA 02</a></li>
+                <li><a href="#" onclick="openModal333('FINCA 03', 'https://aromaherbex.github.io/F3/', 'd3')">FINCA 03</a></li>
+                <li><a href="#" onclick="openModal333('FINCA 04', 'https://aromaherbex.github.io/F4/', 'd4')">FINCA 04</a></li>
+                <li><a href="#" onclick="openModal333('FINCA 05', 'https://aromaherbex.github.io/F5/', 'd5')">FINCA 05</a></li>
+                <li><a href="#" onclick="openModal333('FINCA 06', 'https://aromaherbex.github.io/F6/', 'd6')">FINCA 06</a></li>
+                <li><a href="#" onclick="openModal333('FINCA 08', 'https://aromaherbex.github.io/F8/', 'd8')">FINCA 08</a></li>
+                <li><a href="#" onclick="openModal333('FINCA 09', 'https://aromaherbex.github.io/F9/', 'd9')">FINCA 09</a></li>
+                <li><a href="#" onclick="openModal333('FINCA 13', 'https://aromaherbex.github.io/F13/', 'd13')">FINCA 13</a></li>
+                <li><a href="#" onclick="openModal333('FINCA 19', 'https://aromaherbex.github.io/F19/', 'd19')">FINCA 19</a></li>
+                <li><a href="#" onclick="openModal333('FINCA 20', 'https://aromaherbex.github.io/F20/', 'd20')">FINCA 20</a></li>
+                <li><a href="#" onclick="openModal333('FINCA 21', 'https://aromaherbex.github.io/F21/', 'd21')">FINCA 21</a></li>
+                <li><a href="#" onclick="openModal333('FINCA 21', 'https://aromaherbex.github.io/F22/', 'd22')">FINCA 22</a></li>
+                
+            </ul>
+        </li>
+        <li><a href="https://193.56.164.133:8443/reportes/Reporte/?key=Partes_Rendimientos">Rendement</a></li>
+        <li><a href="https://193.56.164.133:8443/reportes/Reporte/?key=Marcheting">Rendement de tracteur</a></li>
+        <li><a href="https://193.56.164.133:8443/ControlRoute/task/">Access Taches</a></li>
+        <li><a href="https://193.56.164.133:8443/Tareo/productivity_log/">productivite</a></li>
+        <li><a href="https://193.56.164.133:8443/Tareo/machinerymarking/">Modifier rnd tracteur</a></li>
+	<li><a href="https://aromaherbex.github.io/R20/">Rendement manuel</a></li>
+        
+        
+    </ul>
+</nav>
+
+
+ 
+<div class="container">
+   
+<div class="totals">
+    <span class="total-item">TOTAL H AGROTAREO: <span id="totalColumn4">...</span></span>
+    <span class="total-item">TOTAL H POINTAGE: <span id="totalColumn5">...</span></span>
+    <span class="total-item">DIFFERENCE: <span id="totalColumn56">...</span></span>
+    <span class="total-item">PERCENTAGE: <span id="totalColumn567">...</span></span>
+
+</div>
+
+<table id="dataTable">
+    <thead>
+        <tr>
+            <th id="2027"><input type="text" class="filter-input" placeholder="MATRICULE"></th>
+            <th><input type="text" class="filter-input" placeholder="NOMBRE"></th>
+            <th><input type="text" class="filter-input" placeholder="EQUIPE"></th>
+            <th><input type="text" class="filter-input" placeholder="AGROTAREO"></th>
+            <th><input type="text" class="filter-input" placeholder="RHHH"></th>
             <th>
-              <input type="text" id="differenceFilter" onkeyup="filterTable()" placeholder="Afficher les différences non nulles uniquement...">
-              <select id="differenceComparison" onchange="filterTable()">
-                <option value="contains">Contient</option> 
-                <option value="equals">Égal à</option>
-                <option value="greater">Supérieur à</option>
-                <option value="less">Inférieur à</option>
-              </select>
+                <input type="text" class="filter-input" placeholder="DIFFERENCE">
+                
+                    <select class="filter-select" id="column6Filter">
+                        <option value="">All</option>
+                        <option value="less">Less</option>
+                        <option value="greater">Greater</option>
+                    </select>
+                
             </th>
-            <th><input type="text" id="column7Filter" onkeyup="filterTable()" placeholder="FINCA..."></th>
-            <th><input type="text" id="c8r" onkeyup="filterTable()" placeholder="DATE..."></th>
-          </tr>
-        </thead>
-        <tbody id="dataTable">
-          <!-- البيانات سيتم إدراجها هنا -->
-        </tbody>
-      </table>
-    </div>
-  </div>
-<!-- WhatsApp Button -->
+            <th><input type="text" class="filter-input" placeholder="FINCA"></th>
+            <th><input type="text" class="filter-input" placeholder="DATE"></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Data will be loaded here -->
+    </tbody>
+</table>
 <div class="whatsapp-btn" onclick="openModal()">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2048px-WhatsApp.svg.png" alt="WhatsApp">
 </div>
@@ -488,120 +510,254 @@ body {
       <span class="close" onclick="closeModal()">&times;</span>
       <h2>Envoyer des informations</h2>
       <form id="modalForm">
-          <label for="fincaModal">FINCA :</label>
-          <select id="fincaModal" name="finca" required>
-              <option value="">Sélectionner une option</option>
-              <option value="F01">F01</option>
-              <option value="F02">F02</option>
-              <option value="F03">F03</option>
-              <option value="F04">F04</option>
-              <option value="F05">F05</option>
-              <option value="F06">F06</option>
-              <option value="F08">F08</option>
-              <option value="F09">F09</option>
-              <option value="F13">F13</option>
-              <option value="F19">F19</option>
-              <option value="F20">F20</option>
-              <option value="F21">F21</option>
-              <option value="F22">F22</option>
-          </select>
-
+          <label for="dateModal">FINCA :</label>
+          <input type="number" id="finca11" />
           <label for="dateModal">DATE :</label>
-          <input type="date" id="dateModal" name="date" required>
-
-          <label for="destinataireModal">Destinataire :</label>
+          <input type="date" id="date11" >
           <div class="checkbox-group">
-              <label><input type="checkbox" id="person1Modal" name="destinataire" value="person1"> Pointage</label>
-              <label><input type="checkbox" id="person2Modal" name="destinataire" value="person2"> Rendement</label>
+              <label><input type="checkbox" id="person1Modal" name="destinataire" value="person1"> HICHAM</label>
+              <label><input type="checkbox" id="person2Modal" name="destinataire" value="person2"> IBRAHIM</label>
           </div>
-
+          
+          
           <label for="messageModal">Message :</label>
           <textarea id="messageModal" name="message" rows="4" required></textarea>
-
-          <button type="button11" onclick="sendToWhatsApp()">Envoyer sur WhatsApp</button>
+       
+          <button type="button11" class="BT11" onclick="sendToWhatsApp()">Envoyer sur WhatsApp</button>
       </form>
   </div>
 </div>
-<div id="myModal4" class="modal4">
-  <div class="modal-content4">
-      <span class="close" onclick="closeModal4()">&times;</span>
-      <h2>LOGIN</h2>
-      <form id="modalForm">
-        <label for="USER">FINCA :</label>
-        <input type="text" id="USER" name="USER" required>
-
-        <label for="PASS">MOTE DE PASSE : </label>
-        <input type="password" id="PASS" name="PASS" required>
-
-        <button type="button" onclick="LOGIN()">Se connecter</button>
-    </form>
-  </div>
+<div id="myModal333" class="Modal333">
+    <div class="Modal333-content">
+        <span class="close" onclick="closeModal333()">&times;</span>
+        <p id="Modal333-title"></p>
+        <input type="password" id="password" placeholder="Entrez votre mot de passe">
+        <button onclick="submitPassword()">Submit</button>
+    </div>
 </div>
-  <script>
-    // Open the modal
-    function openModal4() {
-        document.getElementById("myModal4").style.display = "block";
+<script>
+
+     function closeModal333() {
+        document.getElementById("myModal333").style.display = "none";
+    }
+     let correctPassword = '';
+     
+    let redirectUrl = '';
+
+    // Function to open the Modal333
+    function openModal333(fincaName, url, password) {
+        document.getElementById('myModal333').style.display = 'flex';
+        document.getElementById('Modal333-title').innerText = fincaName;
+        correctPassword = password;
+        redirectUrl = url;
     }
 
-    // Close the modal
-    function closeModal4() {
-        document.getElementById("myModal4").style.display = "none";
-    }
+    // Close the Modal333 when the close button is clicked
     
-    // Send message via WhatsApp
-    function LOGIN() {
-      var username = document.getElementById("USER").value;
-            var password = document.getElementById("PASS").value;
 
-            // التحقق من صحة اسم المستخدم وكلمة المرور
-            if (username === "FINCA01" && password === "G7^rT") {
-                // F01
-                window.location.href = "https://aromaherbex.github.io/F1/";
-            } else if (username === "FINCA02" && password === "a2$W9") {
-                // F02
-                window.location.href = "https://aromaherbex.github.io/F2/";
-            } else if (username === "FINCA03" && password === "L4@pQ") {
-                // F03
-                window.location.href = "https://aromaherbex.github.io/F3/";
-            } else if (username === "FINCA04" && password === "R8*Xk") {
-                // F04
-                window.location.href = "https://aromaherbex.github.io/F4/";
-            } else if (username === "FINCA05" && password === "v3#Jm") {
-                // F05
-                window.location.href = "https://aromaherbex.github.io/F5/";
-            } else if (username === "FINCA06" && password === "sdgth") {
-                // F06
-                window.location.href = "https://aromaherbex.github.io/F6/";
-            } else if (username === "FINCA08" && password === "fvbgh") {
-                // F08
-                window.location.href = "https://aromaherbex.github.io/F8/";
-            } else if (username === "FINCA09" && password === "hgtyh") {
-                // F09
-                window.location.href = "https://aromaherbex.github.io/F9/";
-            } else if (username === "FINCA13" && password === "fdrfg") {
-                // F13
-                window.location.href = "https://aromaherbex.github.io/F13/";
-            } else if (username === "FINCA19" && password === "yuikj") {
-                // F19
-                window.location.href = "https://aromaherbex.github.io/F19/";
-            } else if (username === "FINCA20" && password === "ygtrg") {
-                // F20
-                window.location.href = "https://aromaherbex.github.io/F20/";
-            } else if (username === "FINCA21" && password === "frdfg") {
-                // F21
-                window.location.href = "https://aromaherbex.github.io/F21/";
-            } else if (username === "FINCA22" && password === "tyhjui") {
-                // F22
-                window.location.href = "https://aromaherbex.github.io/F22/";
-            } else if (username === "IBRAHIM" && password === "2024") {
-                // F22
-                window.location.href = "https://aromaherbex.github.io/IBRAHIM/";
-            } else {
-                // عرض رسالة خطأ
-                alert("Nom d'utilisateur ou mot de passe incorrect");
-            }
+    // Function to submit the password
+    function submitPassword() {
+        const enteredPassword = document.getElementById('password').value;
+
+        if (enteredPassword === correctPassword) {
+            window.location.href = redirectUrl;
+        } else {
+            alert('mot de passe incorrect!');
+        }
     }
-	  // Open the modal
+
+    // Close the Modal333 when clicking outside of it
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('myModal333')) {
+            document.getElementById('myModal333').style.display = 'none';
+        }
+    };
+    
+
+    // URL of the Google Apps Script web app
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyj_SMbhGaP5syKGNnsx_CNbwJ0xGLYAemoY9Qw_aCe3MjUpjXc9wJ-Ge5amp_gfPVI_w/exec';
+
+    // Function to format date to YYYY-MM-DD
+    function formatDate(dateString) {
+        const dateObj = new Date(dateString);
+        const day = dateObj.getDate();
+        const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+        const year = dateObj.getFullYear();
+        return `${year}-${month}-${day}`;
+    }
+
+    // Function to update totals and difference
+    function updateTotals() {
+    const table = document.getElementById('dataTable');
+    const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    
+    
+    let totalColumn4 = 0;
+    let totalColumn5 = 0;
+    let totalColumn56 = 0;
+    
+
+    Array.from(rows).forEach(row => {
+        if (row.style.display !== 'none') { // Only include visible rows
+            const cell4 = row.getElementsByTagName('td')[3]; // 4th column (index 3)
+            const cell5 = row.getElementsByTagName('td')[4]; // 5th column (index 4)
+            const cell56 = row.getElementsByTagName('td')[5]; // 6th column (index 5)
+
+            if (cell4) {
+                totalColumn4 += parseFloat(cell4.textContent) || 0;
+            }
+            if (cell5) {
+                totalColumn5 += parseFloat(cell5.textContent) || 0;
+            }
+            if (cell56) {
+                totalColumn56 += parseFloat(cell56.textContent) || 0;
+            }
+            
+        }
+    });
+    var finca1 = table.rows[3].cells[6].innerText;
+      var date1 = table.rows[3].cells[7].innerText;
+   
+      
+    const percentageDifference = ((totalColumn4 / totalColumn5) * 100 - 100).toFixed(2);
+    document.getElementById('totalColumn4').textContent = totalColumn4.toFixed(1) + " H";
+    document.getElementById('totalColumn5').textContent = totalColumn5 + " H"; // Display the row count where value > 0
+    document.getElementById('totalColumn56').textContent = totalColumn56 + " H";
+    document.getElementById('totalColumn567').textContent = percentageDifference + " %";
+    document.getElementById('heur').value = totalColumn4.toFixed(2) + " H";
+    document.getElementById('prs').value = totalColumn5.toFixed(0) + " PRS";
+    finca11.value = `${finca1}`;
+    date11.value = `${date1}`;
+      window.onload=updateTotals;
+}
+
+
+
+    // Fetch data from Google Sheets
+    fetch(scriptURL)
+        .then(response => response.json())
+        .then(data => {
+            console.log('Data fetched successfully:', data); // Log the fetched data
+
+            const tableBody = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+
+            // Clear existing rows if any
+            tableBody.innerHTML = '';
+
+            data.forEach(row => {
+                const newRow = tableBody.insertRow();
+
+                Object.keys(row).forEach((key, index) => {
+                    const cell = newRow.insertCell(index);
+                    let cellValue = row[key];
+
+                    // Format date in column 8
+                    if (index === 7) { 
+                        cellValue = formatDate(cellValue);
+                    }
+                    
+                    cell.textContent = cellValue;
+                    
+                    
+                    
+                    // Apply red color if value in column 6 is not zero
+                    
+
+                    // If this is column 6 and its value is not 0, add the Edit button
+                    if (index === 5 && parseInt(row[key], 10) != 0) {
+                        const editButton = document.createElement("button");
+                        
+                        editButton.className = 'icon-button';
+                        editButton
+                        editButton.innerHTML = '<i class="fas fa-pencil-alt"></i>';
+                        editButton.classList.add("edit-btn");
+                        editButton.style.background = 'none';
+                        editButton.style.border = 'none';
+                        editButton.style.fontSize = '15px';
+                        editButton.style.margin = '5px';
+                        cell.style.backgroundColor='#FBC2B8'
+                        editButton.style.cursor = 'pointer';
+                        editButton.style.color = '#004d40';  // Example color
+
+// Add hover effect using JavaScript (not recommended for complex styles)
+                        editButton.addEventListener('mouseover', () => {
+                        editButton.style.color = '#00796b';  // Hover color
+                       });
+                        editButton.addEventListener('mouseout', () => {
+                        editButton.style.color = '#004d40';  // Original color
+                        });
+                        
+
+                        editButton.onclick = function() {
+                            const cell1Value = newRow.cells[0].textContent.trim();
+                            const cell2Value = newRow.cells[7].textContent.trim();
+                            const url = `https://193.56.164.133:8443/ControlRoute/task/?q=${encodeURIComponent(cell1Value)}&initialValidate__range__gte=${encodeURIComponent(cell2Value)}&initialValidate__range__lte=${encodeURIComponent(cell2Value)}`;
+                            window.location.href = url;
+                        };
+                        cell.appendChild(editButton);
+                        
+                    }
+                });
+            });
+
+            // Update totals after data is loaded
+            updateTotals();
+
+            // Add event listeners to filter inputs
+            const filterInputs = document.querySelectorAll('.filter-input');
+            filterInputs.forEach((input, index) => {
+                input.addEventListener('input', () => {
+                    filterTable(index, input.value);
+                });
+            });
+
+            // Add event listener to filter select
+            const column6Filter = document.getElementById('column6Filter');
+            column6Filter.addEventListener('change', () => {
+                filterByValue(column6Filter.value);
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+
+    // Function to filter the table based on column and value
+    function filterTable(columnIndex, filterValue) {
+        const table = document.getElementById('dataTable');
+        const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+        Array.from(rows).forEach(row => {
+            const cell = row.getElementsByTagName('td')[columnIndex];
+            if (cell) {
+                const cellValue = cell.textContent.toLowerCase();
+                const isVisible = columnIndex === 5 
+                    ? (filterValue === 'less' ? parseInt(cellValue, 10) < 0 : filterValue === 'greater' ? parseInt(cellValue, 10) > 0 : cellValue.includes(filterValue.toLowerCase()))
+                    : cellValue.includes(filterValue.toLowerCase());
+
+                row.style.display = isVisible ? '' : 'none';
+            }
+        });
+
+        // Update totals after filtering
+        updateTotals();
+    }
+
+    // Function to filter rows based on column 6 value
+    function filterByValue(condition) {
+        const table = document.getElementById('dataTable');
+        const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+        Array.from(rows).forEach(row => {
+            const cell = row.getElementsByTagName('td')[5]; // Column 6 (0-based index 5)
+            if (cell) {
+                const cellValue = parseFloat(cell.textContent) || 0;
+                const isVisible = condition === 'less' ? cellValue < 0 : condition === 'greater' ? cellValue > 0 : true;
+                row.style.display = isVisible ? '' : 'none';
+            }
+        });
+
+        // Update totals after filtering
+        updateTotals();
+    }
+
     function openModal() {
         document.getElementById("myModal").style.display = "block";
     }
@@ -610,22 +766,24 @@ body {
     function closeModal() {
         document.getElementById("myModal").style.display = "none";
     }
+	
 
     // Send message via WhatsApp
     function sendToWhatsApp() {
-        var finca = document.getElementById("fincaModal").value;
-        var date = document.getElementById("dateModal").value;
+        var finca11 = document.getElementById("finca11").value;
+        var date11 = document.getElementById("date11").value;
         var message = document.getElementById("messageModal").value;
-
+        
+        
         var phoneNumbers = [];
         if (document.getElementById("person1Modal").checked) {
-            phoneNumbers.push("+212662781207"); // Numéro de téléphone pour la personne 1
+            phoneNumbers.push("+212666043724"); // Numéro de téléphone pour la personne 1
         }
         if (document.getElementById("person2Modal").checked) {
             phoneNumbers.push("+212663715065"); // Numéro de téléphone pour la personne 2
         }
 
-        var fullMessage = `Concernant la Ferme: ${finca} le: ${date} , le probleme a ete resolu (${message})`;
+        var fullMessage = `FERME AGADIR *${finca11}*\n\nDATE : *${date11}*\n\n Le nombre d'heures dans Poinage correspond au nombre d'heures dans Agrotareo.*(${message})*`;
 
         if (phoneNumbers.length > 0) {
             for (var i = 0; i < phoneNumbers.length; i++) {
@@ -643,167 +801,38 @@ body {
             alert("Veuillez sélectionner au moins une personne.");
         }
     }
-  function redirectToSite() {
-  const selectElement = document.getElementById('daySelect');
-  const selectedOption = selectElement.options[selectElement.selectedIndex];
-  const url = selectedOption.getAttribute('data-url');
+    document.getElementById('downloadBtn').addEventListener('click', function () {
+    // تحديد الجدول من HTML
+    var table = document.getElementById('dataTable');
+    
+    // الحصول على القيمة من الخلية في العمود 6 من الصف الأول
+    var fileName = table.rows[2].cells[4].innerText + "  (" + table.rows[2].cells[5].innerText+")"  || 'default_name';  
 
-  if (url) {
-    window.location.href = url;
-  }
-}
-  
-  function navigateToPage() {
-      window.location.href = 'https://abdermb98.github.io/pointage/'; 
-    }
-	function navigateToPage1() {
-      window.location.href = 'https://193.56.164.133:8443/reportes/Reporte/?key=Partes_Rendimientos'; 
-    }
-	function navigateToPage2() {
-      window.location.href = 'https://193.56.164.133:8443/ControlRoute/task/'; 
-    }
-   function navigateToPage3() {
-      window.location.href = 'https://193.56.164.133:8443/Tareo/productivity_log/'; 
-    }
-	  function navigateToPage4() {
-      window.location.href = 'https://193.56.164.133:8443/Tareo/machinerymarking/'; 
-    }
-	  function navigateToPage5() {
-      window.location.href = 'https://193.56.164.133:8443/reportes/Reporte/?key=Marcheting'; 
-    }
-    const url = 'https://script.google.com/macros/s/AKfycbyj_SMbhGaP5syKGNnsx_CNbwJ0xGLYAemoY9Qw_aCe3MjUpjXc9wJ-Ge5amp_gfPVI_w/exec';
+    // إنشاء الكتاب
+    var wb = XLSX.utils.table_to_book(table, {sheet: "POINTAGE F20"});
+    var wbout = XLSX.write(wb, {bookType: 'xlsx', type: 'binary'});
 
-    async function fetchData() {
-      const response = await fetch(url);
-      const data = await response.json();
-      const headers = data.headers;
-      const rows = data.rows;
-
-      const tableHeader = document.getElementById('headerRow');
-      headers.forEach(header => {
-        const th = document.createElement('th');
-        th.textContent = header;
-        tableHeader.appendChild(th);
-      });
-
-      const tableBody = document.getElementById('dataTable');
-      let totalHours4 = 0; // Variable to store the total of the fourth column
-      let totalHours5 = 0; // Variable to store the total of the fifth column
-      rows.forEach((row, rowIndex) => {
-        const tr = document.createElement('tr');
-        row.forEach((cell, cellIndex) => {
-          const td = document.createElement('td');
-          if (cellIndex === 7) { // Assuming the date is in the 8th column
-            td.textContent = cell;
-          } else {
-            td.textContent = cell;
-          }
-          if (cellIndex === 5 && cell != 0) {
-            td.classList.add('highlight');
-            td.innerHTML += '<i class="fas fa-exclamation-triangle warning-icon"></i>'; // Add warning icon
-          }
-          if (cellIndex === 3) {
-            totalHours4 += Number(cell); // Adding to the total if in the fourth column
-          }
-          if (cellIndex === 4) {
-            totalHours5 += Number(cell); // Adding to the total if in the fifth column
-          }
-          tr.appendChild(td);
-        });
-        tableBody.appendChild(tr);
-      });
-
-      // Update the data summary section with the total of the fourth and fifth columns
-      updateDataSummary(totalHours4, totalHours5);
+    function s2ab(s) { 
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+        return buf;    
     }
 
-    function updateDataSummary(totalHours4, totalHours5) {
-      const de = totalHours4 - totalHours5;
-      const percentageDifference = ((totalHours4 / totalHours5) * 100 - 100).toFixed(2);
+    // إنشاء Blob وتحميل الملف
+    var blob = new Blob([s2ab(wbout)], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+    var url = URL.createObjectURL(blob);
+    var downloadLink = document.createElement('a');
+    downloadLink.href = url;
+    downloadLink.download = fileName + '.xlsx';  
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+    URL.revokeObjectURL(url);
+});
 
-      const dataSummary = document.getElementById('dataSummary');
-      dataSummary.textContent = `Agrotareo: ${totalHours4}h * Pointage: ${totalHours5}h * Différence: ${de}h * Pourcentage de Différence: ${percentageDifference}%`;
-    }
 
-    function formatDate(dateString) {
-      const date = new Date(dateString);
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-      const year = date.getFullYear();
-      return `${month}-${day}-${year}`;
-    }
+</script>
 
-    function compare(value, filter, comparison) {
-      switch (comparison) {
-        case 'equals':
-          return value == filter;
-        case 'greater':
-          return Number(value) > Number(filter);
-        case 'less':
-          return Number(value) < Number(filter);
-        case 'contains':
-        default:
-          return value.includes(filter);
-      }
-    }
-
-    function filterTable() {
-      const numberFilter = document.getElementById('numberFilter').value.toLowerCase();
-      const nameFilter = document.getElementById('nameFilter').value.toLowerCase();
-      const farmFilter = document.getElementById('farmFilter').value.toLowerCase();
-      const realHoursFilter = document.getElementById('realHoursFilter').value.toLowerCase();
-      const recordedHoursFilter = document.getElementById('recordedHoursFilter').value.toLowerCase();
-      const differenceFilter = document.getElementById('differenceFilter').value.toLowerCase();
-      const differenceComparison = document.getElementById('differenceComparison').value;
-      const column7Filter = document.getElementById('column7Filter').value.toLowerCase();
-
-      console.log('Filters:', {
-        numberFilter,
-        nameFilter,
-        farmFilter,
-        realHoursFilter,
-        recordedHoursFilter,
-        differenceFilter,
-        differenceComparison,
-        column7Filter
-      });
-
-      const table = document.getElementById('workHoursTable');
-      const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-
-      let totalHours4 = 0; // Variable to store the total of the fourth column
-      let totalHours5 = 0; // Variable to store the total of the fifth column
-
-      for (let i = 0; i < rows.length; i++) {
-        const tds = rows[i].getElementsByTagName('td');
-        let display = 'none';
-
-        if (
-          (tds[0] && tds[0].textContent.toLowerCase().includes(numberFilter) || numberFilter === '') &&
-          (tds[1] && tds[1].textContent.toLowerCase().includes(nameFilter) || nameFilter === '') &&
-          (tds[2] && tds[2].textContent.toLowerCase().includes(farmFilter) || farmFilter === '') &&
-          (tds[3] && tds[3].textContent.toLowerCase().includes(realHoursFilter) || realHoursFilter === '') &&
-          (tds[4] && tds[4].textContent.toLowerCase().includes(recordedHoursFilter) || recordedHoursFilter === '') &&
-          (tds[5] && compare(tds[5].textContent, differenceFilter, differenceComparison)) &&
-          (tds[6] && tds[6].textContent.toLowerCase().includes(column7Filter) || column7Filter === '')
-        ) {
-          display = '';
-        }
-          const col4 = tds[3] && Number(tds[3].textContent.trim()) === 0;
-        const col5 = tds[4] && Number(tds[4].textContent.trim()) === 0;
-        if (display === display && (col4 || col5)) {
-          display = display ;
-        }
-		if (display === '') {
-          totalHours4 += Number(tds[3] ? tds[3].textContent : 0);
-          totalHours5 += Number(tds[4] ? tds[4].textContent : 0);
-        }
-        rows[i].style.display = display;
-      }
-	  updateDataSummary(totalHours4, totalHours5);
-    }
-
-    fetchData();
-  </script>
 </body>
 </html>
