@@ -201,7 +201,7 @@ th {
     
     select, input[type="date"], textarea,input {
         width: 100%;
-        padding: 12px;
+        padding: 5px;
         margin-bottom: 5px;
         border: 1px solid #004d40;
         border-radius: 40px;
@@ -384,32 +384,7 @@ th {
             width: 0px; /* يمكنك تعديل القيمة بحسب العرض المطلوب */
         }
 
-        td.highlight {
-    background-color: #ff6f61; /* لون برتقالي دافئ */
-    color: #fff;
-    position: relative;
-    animation: highlightPulse 2s infinite, highlightGlow 3s infinite;
-}
-
-@keyframes highlightPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-@keyframes highlightGlow {
-    0% { box-shadow: 0 0 8px rgba(255, 105, 97, 0.6); }
-    100% { box-shadow: 0 0 16px rgba(255, 105, 97, 0.8); }
-}
-
-td.highlight .warning-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    color: #fff;
-    font-size: 1.2em;
-}
-
+        
         
     </style>
 </head>
@@ -466,34 +441,31 @@ td.highlight .warning-icon {
 <div class="container">
    
 <div class="totals">
-    <span class="total-item">TOTAL H AGROTAREO: <span id="totalColumn4">...</span></span>
-    <span class="total-item">TOTAL H POINTAGE: <span id="totalColumn5">...</span></span>
-    <span class="total-item">DIFFERENCE: <span id="totalColumn56">...</span></span>
-    <span class="total-item">PERCENTAGE: <span id="totalColumn567">...</span></span>
+    <span class="total-item">TOTAL H AGROTAREO: <span id="totalColumn4">0</span></span>
+    <span class="total-item">TOTAL H POINTAGE: <span id="totalColumn5">0</span></span>
+    <span class="total-item">DESCUADRAGE: <span id="totalColumn56">0</span></span>
+    
 
 </div>
 
 <table id="dataTable">
     <thead>
         <tr>
-            <th id="2027"><input type="text" class="filter-input" placeholder="MATRICULE"></th>
-            <th><input type="text" class="filter-input" placeholder="NOMBRE"></th>
-            <th><input type="text" class="filter-input" placeholder="EQUIPE"></th>
-            <th><input type="text" class="filter-input" placeholder="AGROTAREO"></th>
-            <th><input type="text" class="filter-input" placeholder="RHHH"></th>
-            <th>
-                <input type="text" class="filter-input" placeholder="DIFFERENCE">
-                
-                    <select class="filter-select" id="column6Filter">
-                        <option value="">All</option>
-                        <option value="less">Less</option>
-                        <option value="greater">Greater</option>
-                    </select>
-                
+            <th style="width: 5%;" ><input type="text" class="filter-input" placeholder="MATRICULE"></th>
+            <th style="width: 22%;" ><input type="text" class="filter-input" placeholder="NOMBRE"></th>
+            <th style="width: 20%;" ><input type="text" class="filter-input" placeholder="EQUIPE"></th>
+            <th style="width: 8%;" ><input type="text" class="filter-input" placeholder="AGREOTAREO"></th>
+            <th style="width: 8%;" ><input type="text" class="filter-input" placeholder="RHHHH"></th>
+            <th style="width: 8%;" >
+                <input type="text" class="filter-input" placeholder="Descuadrage">
+                <select class="filter-select" id="column6Filter">
+                    <option value="">All</option>
+                    <option value="less">Descuadrage</option>
+                    
+                </select>
             </th>
-            <th><input type="text" class="filter-input" placeholder="FINCA"></th>
-            <th><input type="text" class="filter-input" placeholder="DATE"></th>
-            
+            <th style="width: 15%;" ><input type="text" class="filter-input" placeholder="FINCA"></th>
+            <th style="width: 14%;" ><input type="text" class="filter-input" placeholder="DATE"></th>
         </tr>
     </thead>
     <tbody>
@@ -511,9 +483,13 @@ td.highlight .warning-icon {
       <h2>Envoyer des informations</h2>
       <form id="modalForm">
           <label for="dateModal">FINCA :</label>
-          <input type="number" id="finca11" />
+          <input type="text" id="finca11" />
           <label for="dateModal">DATE :</label>
-          <input type="date" id="date11" >
+          <input type="text" id="date11" >
+          <label for="dateModal">TOTAL H :</label>
+          <input type="text" id="heur" />
+          <label for="dateModal">NOMBRE DE PRS :</label>
+          <input type="text" id="prs" />
           <div class="checkbox-group">
               <label><input type="checkbox" id="person1Modal" name="destinataire" value="person1"> HICHAM</label>
               <label><input type="checkbox" id="person2Modal" name="destinataire" value="person2"> IBRAHIM</label>
@@ -595,35 +571,31 @@ td.highlight .warning-icon {
     let totalColumn4 = 0;
     let totalColumn5 = 0;
     let totalColumn56 = 0;
-    
 
     Array.from(rows).forEach(row => {
         if (row.style.display !== 'none') { // Only include visible rows
             const cell4 = row.getElementsByTagName('td')[3]; // 4th column (index 3)
             const cell5 = row.getElementsByTagName('td')[4]; // 5th column (index 4)
-            const cell56 = row.getElementsByTagName('td')[5]; // 6th column (index 5)
-
+            const cell56 = row.getElementsByTagName('td')[5]; // 5th column (index 4)
             if (cell4) {
-                totalColumn4 += parseFloat(cell4.textContent) || 0;
+                totalColumn4 += Number(cell4.textContent) || 0;
             }
             if (cell5) {
-                totalColumn5 += parseFloat(cell5.textContent) || 0;
+                totalColumn5 += Number(cell5.textContent) || 0;
             }
             if (cell56) {
-                totalColumn56 += parseFloat(cell56.textContent) || 0;
+                totalColumn56 += Number(cell56.textContent) || 0;
             }
-            
         }
     });
     var finca1 = table.rows[3].cells[6].innerText;
       var date1 = table.rows[3].cells[7].innerText;
-   
-      
-    const percentageDifference = ((totalColumn4 / totalColumn5) * 100 - 100).toFixed(2);
-    document.getElementById('totalColumn4').textContent = totalColumn4.toFixed(1) + " H";
-    document.getElementById('totalColumn5').textContent = totalColumn5 + " H"; // Display the row count where value > 0
-    document.getElementById('totalColumn56').textContent = totalColumn56 + " H";
-    document.getElementById('totalColumn567').textContent = percentageDifference + " %";
+  
+    
+    
+    document.getElementById('totalColumn4').textContent = totalColumn4.toFixed(2) + " H";
+    document.getElementById('totalColumn5').textContent = totalColumn5.toFixed(2) + " H";
+    document.getElementById('totalColumn56').textContent = totalColumn56.toFixed(2) + " H";
     document.getElementById('heur').value = totalColumn4.toFixed(2) + " H";
     document.getElementById('prs').value = totalColumn5.toFixed(0) + " PRS";
     finca11.value = `${finca1}`;
@@ -654,28 +626,66 @@ td.highlight .warning-icon {
                     // Format date in column 8
                     if (index === 7) { 
                         cellValue = formatDate(cellValue);
+                        cell.style.width='14%';
                     }
+                    if (index === 0) { 
+                        
+                        cell.style.width='5%';
+                    }
+                    if (index === 1) { 
+                        
+                        cell.style.width='22%';
+                    }
+                    if (index === 2) { 
+                        
+                        cell.style.width='20%';
+                    }
+                    if (index === 3) { 
+                        
+                        cell.style.width='8%';
+                    }
+                    if (index === 4) { 
+                        
+                        cell.style.width='8%';
+                    }
+                    if (index === 5) { 
+                        
+                        cell.style.width='8%';
+                    }
+                    if (index === 6) { 
+                        
+                        cell.style.width='15%';
+                    }
+                    
                     
                     cell.textContent = cellValue;
                     
-                    
-                    
+                    if (index === 5 && Number(row[key], 10) === 0) {
+                        cell.textContent=""
+                    }
+                    if (index === 4 && Number(row[key], 10) === 0) {
+                        cell.textContent=""
+                    }
+                    if (index === 3 && Number(row[key], 10) === 0) {
+                        cell.textContent=""
+                    }
+                    if (index === 6 && Number(row[key], 10) === 0) {
+                        cell.textContent=""
+                    }
                     // Apply red color if value in column 6 is not zero
                     
 
                     // If this is column 6 and its value is not 0, add the Edit button
-                    if (index === 5 && parseInt(row[key], 10) != 0) {
+                    if (index === 5 && Number(row[key], 10) != 0) {
                         const editButton = document.createElement("button");
-                        
                         editButton.className = 'icon-button';
-                        editButton
                         editButton.innerHTML = '<i class="fas fa-pencil-alt"></i>';
                         editButton.classList.add("edit-btn");
                         editButton.style.background = 'none';
                         editButton.style.border = 'none';
+                        cell.style.backgroundColor='#FBC2B8';
                         editButton.style.fontSize = '15px';
                         editButton.style.margin = '5px';
-                        cell.style.backgroundColor='#FBC2B8'
                         editButton.style.cursor = 'pointer';
                         editButton.style.color = '#004d40';  // Example color
 
@@ -686,7 +696,24 @@ td.highlight .warning-icon {
                         editButton.addEventListener('mouseout', () => {
                         editButton.style.color = '#004d40';  // Original color
                         });
-                        
+                        const editButton1 = document.createElement("button");
+                        editButton1.className = 'icon-button';
+                        editButton1.innerHTML = '<i class="fa fa-edit"></i>';
+                        editButton1.classList.add("edit-btn");
+                        editButton1.style.background = 'none';
+                        editButton1.style.border = 'none';
+                        editButton1.style.fontSize = '15px';
+                        editButton1.style.cursor = 'pointer';
+                        editButton1.style.margin = '5px';
+                        editButton1.style.color = '#004d40';  // Example color
+
+// Add hover effect using JavaScript (not recommended for complex styles)
+                        editButton1.addEventListener('mouseover', () => {
+                        editButton1.style.color = '#00796b';  // Hover color
+                       });
+                        editButton1.addEventListener('mouseout', () => {
+                        editButton1.style.color = '#004d40';  // Original color
+                        });
 
                         editButton.onclick = function() {
                             const cell1Value = newRow.cells[0].textContent.trim();
@@ -729,7 +756,7 @@ td.highlight .warning-icon {
             if (cell) {
                 const cellValue = cell.textContent.toLowerCase();
                 const isVisible = columnIndex === 5 
-                    ? (filterValue === 'less' ? parseInt(cellValue, 10) < 0 : filterValue === 'greater' ? parseInt(cellValue, 10) > 0 : cellValue.includes(filterValue.toLowerCase()))
+                    ? (filterValue === 'less' ? parseInt(cellValue, 10) != 0 : filterValue === 'greater' ? parseInt(cellValue, 10) != 0 : cellValue.includes(filterValue.toLowerCase()))
                     : cellValue.includes(filterValue.toLowerCase());
 
                 row.style.display = isVisible ? '' : 'none';
@@ -749,7 +776,7 @@ td.highlight .warning-icon {
             const cell = row.getElementsByTagName('td')[5]; // Column 6 (0-based index 5)
             if (cell) {
                 const cellValue = parseFloat(cell.textContent) || 0;
-                const isVisible = condition === 'less' ? cellValue < 0 : condition === 'greater' ? cellValue > 0 : true;
+                const isVisible = condition === 'less' ? cellValue != 0 : condition === 'greater' ? cellValue != 0 : true;
                 row.style.display = isVisible ? '' : 'none';
             }
         });
@@ -773,7 +800,8 @@ td.highlight .warning-icon {
         var finca11 = document.getElementById("finca11").value;
         var date11 = document.getElementById("date11").value;
         var message = document.getElementById("messageModal").value;
-        
+        var prs = document.getElementById("prs").value;
+        var heur = document.getElementById("heur").value;
         
         var phoneNumbers = [];
         if (document.getElementById("person1Modal").checked) {
@@ -783,7 +811,7 @@ td.highlight .warning-icon {
             phoneNumbers.push("+212663715065"); // Numéro de téléphone pour la personne 2
         }
 
-        var fullMessage = `FERME AGADIR *${finca11}*\n\nDATE : *${date11}*\n\n Le nombre d'heures dans Poinage correspond au nombre d'heures dans Agrotareo.*(${message})*`;
+        var fullMessage = `FINCA : *${finca11}*\n\nDATE : *${date11}*\n\nJe voulais vous informer que les écarts entre le chronométrage manuel et les horloges Agrotareo ont été corrigés.\n\n*(${message})*`;
 
         if (phoneNumbers.length > 0) {
             for (var i = 0; i < phoneNumbers.length; i++) {
